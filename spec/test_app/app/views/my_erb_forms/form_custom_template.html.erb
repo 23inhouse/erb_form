@@ -1,0 +1,7 @@
+<%= form_for(@my_erb_form, :template => 'custom', :html => { :class => 'custom_template' }) do |f| %>
+  <fieldset>
+    <%= f.custom_field :any_method, :template => '' %>
+    <%= f.text_field :text_field, :template => {:template => 'other_custom'} %>
+    <%= f.custom_field :any_method, :template => {:template => 'other_custom'} %>
+  </fieldset>
+<% end %>

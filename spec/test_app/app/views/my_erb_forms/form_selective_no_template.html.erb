@@ -1,0 +1,10 @@
+<%= form_for(@my_erb_form, :html => { :class => 'selective_no_template' }) do |f| %>
+  <fieldset>
+    <%= f.text_field :text_field, :template => false %>
+    <%= f.text_area :text_area, :template => false %>
+    <%= f.check_box :check_box, :template => false %>
+    <%= f.radio_button :radio_button, [:cool], :template => false %>
+    <%= f.date_select :date_select, :start_year => Time.now.year, :end_year => Time.now.year + 1, :discard_month => true, :discourd_day => true, :template => false %>
+    <%= f.select :select, ['nome'], :template => false %>
+  </fieldset>
+<% end %>

@@ -1,0 +1,10 @@
+<%= form_for(@my_erb_form, :template => false, :html => { :class => 'no_template' }) do |f| %>
+  <fieldset>
+    <%= f.text_field :text_field %>
+    <%= f.text_area :text_area %>
+    <%= f.check_box :check_box %>
+    <%= f.radio_button :radio_button, [:cool] %>
+    <%= f.date_select :date_select, :start_year => Time.now.year, :end_year => Time.now.year + 1, :discard_month => true, :discourd_day => true %>
+    <%= f.select :select, ['nome'] %>
+  </fieldset>
+<% end %>
