@@ -1,5 +1,5 @@
 <div class="check_box_field">
-  <%= label(object_name, method, template[:label]) %><br/>
-  <%= check_box(object_name, method, options) %>
+  <%= form.label(method, template[:label]) %><br/>
+  <%= form.check_box(method, options) %>
   <p class="hint"><%= template[:hint] %></p>
 </div>

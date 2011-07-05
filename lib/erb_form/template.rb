@@ -16,11 +16,12 @@ module ErbForm
       self.template[:required] = template[:required] ? I18n.t(:"erb_form.required.mark", :default => '*') : ''
       
       {
+        :form => options.delete(:form),
         :helper_method_name => helper_method_name,
         :method => method,
         :object => options[:object],
         :object_name => object_name,
-        :options => options,
+        :options => options.merge(:template => false),
         :template => template
       }
     end

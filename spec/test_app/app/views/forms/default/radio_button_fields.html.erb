@@ -1,5 +1,5 @@
 <div class="radio_button_field">
-  <%= label(object_name, method, template[:label]) %><br/>
-  <%= radio_button(object_name, method, tag_value, options) %>
+  <%= form.label(method, template[:label]) %><br/>
+  <%= form.radio_button(method, tag_value, options) %>
   <p class="hint"><%= template[:hint] %></p>
 </div>

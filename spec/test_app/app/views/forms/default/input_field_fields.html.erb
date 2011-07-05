@@ -1,5 +1,5 @@
 <div class="input_field">
-  <%= label(object_name, method, template[:label]) %><br/>
-  <%= send(helper_method_name, object_name, method, options) %>
+  <%= form.label(method, template[:label]) %><br/>
+  <%= form.send(helper_method_name, method, options) %>
   <p class="hint"><%= template[:hint] %></p>
 </div>

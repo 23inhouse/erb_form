@@ -88,7 +88,7 @@ module ErbForm
       end
       
       def clean_options(options)
-        keys = [:template]
+        keys = [:template, :form]
         options.dup.delete_if { |k, v| keys.include?(k) }
       end
     end

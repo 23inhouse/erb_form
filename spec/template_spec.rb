@@ -23,6 +23,7 @@ describe "ErbForm::Template" do
     describe "hash" do
       it "returns an hash with specific keys" do
         @template.locals.keys.should == [
+          :form,
           :helper_method_name,
           :method,
           :object,

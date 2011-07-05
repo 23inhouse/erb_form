@@ -19,6 +19,8 @@ module ErbForm
           options[:template] = (form_t == false) ? false : { :template => form_t }
         end
         
+        options[:form] = self
+        
         objectify_options_original(options)
       end
       
