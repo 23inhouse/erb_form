@@ -60,6 +60,10 @@ module ErbForm
         METHOD
       end
       
+      def hidden_field(object_name, method, options = {})
+        super(object_name, method, clean_options(options))
+      end
+      
     private
       
       def method_missing(helper_method_name, *args)
