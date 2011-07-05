@@ -11,7 +11,7 @@ module ErbForm
     def locals
       self.template = {:template => template} unless template.respond_to?(:keys)
       self.template[:hint] = (template[:hint] || '').html_safe unless template[:hint] === false
-      self.template[:label] = (template[:label] || method.to_s.humanize).html_safe
+      self.template[:label] = (template[:label] || method.to_s.humanize).html_safe unless template[:label] === false
       self.template[:required] = options[:object].class.validators_on(method).any? { |v| v.kind == :presence } if template[:required].nil?
       self.template[:required] = template[:required] ? I18n.t(:"erb_form.required.mark", :default => '*') : ''
       
