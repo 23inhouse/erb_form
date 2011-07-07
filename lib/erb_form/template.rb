@@ -37,8 +37,9 @@ module ErbForm
       [
         [path, template_name, helper_method_name.to_s+'_fields'].join('/'), # forms/custom/text_field_fields.html.erb
         [path, template_name, 'fields'].join('/'),                          # forms/custom/fields.html.erb
-        [rendered_from, method.to_s+'_field'].join('/'),                    # blog/title_field.html.erb
+        [path, template_name, method.to_s+'_field'].join('/'),              # forms/custom/title_field.html.erb
         [rendered_from, helper_method_name.to_s+'_fields'].join('/'),       # blog/text_field_fields.html.erb
+        [rendered_from, method.to_s+'_field'].join('/'),                    # blog/title_field.html.erb
         [path, 'default', helper_method_name.to_s+'_fields'].join('/'),     # forms/default/text_field_fields.html.erb
         [path, 'default', 'input_field_fields'].join('/')                   # forms/default/input_field_fields.html.erb
       ].find do |template_file|
