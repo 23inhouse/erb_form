@@ -64,6 +64,20 @@ module ErbForm
         super(object_name, method, clean_options(options))
       end
       
+      def label(object_name, method, content_or_options, options = {}, &block)
+        content_is_options = content_or_options.is_a?(Hash)
+        if content_is_options || block_given?
+          options = clean_options(content_or_options) if content_is_options
+          text = nil
+        else
+          text = content_or_options
+        end
+        
+        options ||= {}
+        
+        super(object_name, method, content_or_options, clean_options(options), &block)
+      end
+      
     private
       
       def method_missing(helper_method_name, *args)
