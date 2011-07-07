@@ -15,13 +15,14 @@ module ErbForm
       self.template[:required] = options[:object].class.validators_on(method).any? { |v| v.kind == :presence } if template[:required].nil?
       self.template[:required] = template[:required] ? I18n.t(:"erb_form.required.mark", :default => '*') : ''
       
+      options[:template] = (template[:template].blank? && template.keys.size == 1) ? false : template
       {
         :form => options.delete(:form),
         :helper_method_name => helper_method_name,
         :method => method,
         :object => options[:object],
         :object_name => object_name,
-        :options => options.merge(:template => false),
+        :options => options,
         :template => template
       }
     end
