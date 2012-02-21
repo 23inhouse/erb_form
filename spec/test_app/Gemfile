@@ -1,15 +1,11 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.9'
-
 gem 'sqlite3'
-
-gem 'erb_form', '0.0.1', :path => '../..'
+gem 'erb_form', '0.1.0', :path => '../..'
 
 group :development , :test  do
-
   gem 'rspec-rails'
   gem 'webrat'
-  
 end
 

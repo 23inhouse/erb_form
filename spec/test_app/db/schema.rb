@@ -12,13 +12,11 @@
 
 ActiveRecord::Schema.define(:version => 20110629092717) do
 
-  create_table "my_erb_forms", :force => true do |t|
-    t.string   "text_field"
-    t.text     "text_area"
-    t.boolean  "check_box"
-    t.boolean  "radio_button"
-    t.date     "date_select"
-    t.string   "select"
+  create_table "blogs", :force => true do |t|
+    t.string   "name"
+    t.text     "post"
+    t.boolean  "published"
+    t.date     "release_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
