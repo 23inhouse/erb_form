@@ -41,7 +41,7 @@ module ErbForm
     end
 
     def field_template_path(attribute_name)
-      @field_template_path ||= field_layouts(attribute_name).detect { |template_file|
+      field_layouts(attribute_name).detect { |template_file|
         template.view_paths.exists?(template_file, '', false, {
           :locale => [template.locale],
           :formats => template.formats,
