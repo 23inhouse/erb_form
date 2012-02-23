@@ -34,7 +34,10 @@ module ErbForm
       output = template.render(:file => '/' + (field_template_path || 'a_non_existant_file_to_force_a_missing_template_error'), :locals => {
         :form => self,
         :attribute_name => attribute_name,
-        :options => options
+        :error_options => simplify_options(:error, options),
+        :hint_options => simplify_options(:hint, options),
+        :input_options => simplify_options(:input, options),
+        :label_options => simplify_options(:label, options)
       })
       @prevent_recursion = false
       output
@@ -54,6 +57,11 @@ module ErbForm
       unless backtrace[0].scan(__FILE__).size > 0
         backtrace = backtrace.collect { |line| line.scan(__FILE__).size > 0 ? nil : line }.compact!
       end
+    end
+
+    def simplify_options(key, options = {})
+      newkey = key == :error ? :error_prefix : key
+      options[key].is_a?(Hash) ? options[key] : { newkey => (options[key]) }
     end
   end
 
