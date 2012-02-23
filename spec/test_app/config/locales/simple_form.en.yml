@@ -1,1 +1,11 @@
 en:
+  simple_form:
+    hints:
+      blog:
+        name: 'My hint in english'
+    labels:
+      blog:
+        name: 'My english label'
+    placeholders:
+      blog:
+        name: 'type your name here (in english)'
