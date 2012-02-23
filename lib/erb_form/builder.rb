@@ -4,15 +4,17 @@ module ErbForm
       raise ErbForm::DoubleRenderError.new(clean_backtrace(caller)), nil, clean_backtrace(caller) if recursing?
       @prevent_recursion = true
       @field_layout = options.delete(:layout)
-      return render_field(field_template_path(attribute_name), attribute_name, options)
+      render_field(attribute_name, options)
     rescue ActionView::MissingTemplate => e
       raise ErbForm::MissingTemplate.new(field_layouts(attribute_name)), nil, clean_backtrace(e.backtrace)
     end
 
   private
 
-    def recursing?
-      !!@prevent_recursion
+    def clean_backtrace(backtrace)
+      unless backtrace[0].scan(__FILE__).size > 0
+        backtrace = backtrace.collect { |line| line.scan(__FILE__).size > 0 ? nil : line }.compact!
+      end
     end
 
     def field_layouts(attribute_name)
@@ -30,19 +32,6 @@ module ErbForm
       }
     end
 
-    def render_field(field_template_path, attribute_name, options)
-      output = template.render(:file => '/' + (field_template_path || 'a_non_existant_file_to_force_a_missing_template_error'), :locals => {
-        :form => self,
-        :attribute_name => attribute_name,
-        :error_options => simplify_options(:error, options),
-        :hint_options => simplify_options(:hint, options),
-        :input_options => simplify_options(:input, options),
-        :label_options => simplify_options(:label, options)
-      })
-      @prevent_recursion = false
-      output
-    end
-
     def field_template_path(attribute_name)
       field_layouts(attribute_name).detect { |template_file|
         template.view_paths.exists?(template_file, '', false, {
@@ -53,10 +42,25 @@ module ErbForm
       }
     end
 
-    def clean_backtrace(backtrace)
-      unless backtrace[0].scan(__FILE__).size > 0
-        backtrace = backtrace.collect { |line| line.scan(__FILE__).size > 0 ? nil : line }.compact!
-      end
+    def field_template_file(attribute_name)
+      '/' + (field_template_path(attribute_name) || 'a_non_existant_file_to_force_a_missing_template_error')
+    end
+
+    def recursing?
+      !!@prevent_recursion
+    end
+
+    def render_field(attribute_name, options)
+      output = template.render(:file => field_template_file(attribute_name), :locals => {
+        :form => self,
+        :attribute_name => attribute_name,
+        :error_options => simplify_options(:error, options),
+        :hint_options => simplify_options(:hint, options),
+        :input_options => simplify_options(:input, options),
+        :label_options => simplify_options(:label, options)
+      })
+      @prevent_recursion = false
+      output
     end
 
     def simplify_options(key, options = {})
