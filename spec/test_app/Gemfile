@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.9'
 gem 'sqlite3'
-gem 'erb_form', '0.1.1', :path => '../..'
+gem 'erb_form', :path => '../..'
 gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form'
 
 group :development , :test  do
