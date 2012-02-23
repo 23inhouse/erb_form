@@ -1,0 +1,8 @@
+<%= form_for(@blog) do |f| %>
+  <fieldset>
+    <%= f.field :name, {
+      :layout => 'extra_options',
+      :custom => 'My extra options as locals' }
+    %>
+  </fieldset>
+<% end %>

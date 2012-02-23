@@ -46,19 +46,23 @@ module ErbForm
       '/' + (field_template_path(attribute_name) || 'a_non_existant_file_to_force_a_missing_template_error')
     end
 
+    def locals(attribute_name, options)
+      options.except(:form, :attribute_name, :error, :hint, :input, :label).tap { |o|
+        o[:form] = self
+        o[:attribute_name] = attribute_name
+        o[:error_options] = simplify_options(:error, options)
+        o[:hint_options] = simplify_options(:hint, options)
+        o[:input_options] = simplify_options(:input, options)
+        o[:label_options] = simplify_options(:label, options)
+      }
+    end
+
     def recursing?
       !!@prevent_recursion
     end
 
     def render_field(attribute_name, options)
-      output = template.render(:file => field_template_file(attribute_name), :locals => {
-        :form => self,
-        :attribute_name => attribute_name,
-        :error_options => simplify_options(:error, options),
-        :hint_options => simplify_options(:hint, options),
-        :input_options => simplify_options(:input, options),
-        :label_options => simplify_options(:label, options)
-      })
+      output = template.render(:file => field_template_file(attribute_name), :locals => locals(attribute_name, options))
       @prevent_recursion = false
       output
     end
