@@ -64,8 +64,15 @@ module ErbForm
     end
 
     def simplify_options(key, options = {})
-      newkey = key == :error ? :error_prefix : key
-      options[key].is_a?(Hash) ? options[key] : { newkey => (options[key]) }
+      newkey = case key
+      when :error
+        :error_prefix
+      when :input
+        :input_html
+      else
+        key
+      end
+      options[key].is_a?(Hash) && newkey == key ? options[key] : { newkey => (options[key]) }
     end
   end
 

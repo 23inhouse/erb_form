@@ -25,6 +25,7 @@ describe "blogs/render_simple_form_with_options" do
       render
       rendered.should have_selector "input", :class => "string required"
       rendered.should have_selector "input", :placeholder => "type your name here (in english)"
+      rendered.should have_selector "input", :size => '5'
     end
 
     it "renders the hint" do
