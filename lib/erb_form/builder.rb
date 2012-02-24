@@ -47,7 +47,7 @@ module ErbForm
     end
 
     def locals(attribute_name, options)
-      options.except(:form, :attribute_name, :as, :error, :hint, :input, :label).tap { |o|
+      options.except(:form, :attribute_name, :as, :collection, :error, :hint, :input, :label).tap { |o|
         o[:form] = self
         o[:attribute_name] = attribute_name
         o[:error_options] = simplify_options(:error, options)
@@ -75,6 +75,7 @@ module ErbForm
       when :input
         locals = { :input_html => options[:input] }
         locals[:as] = options[:as] if options.has_key?(:as)
+        locals[:collection] = options[:collection] if options.has_key?(:collection)
         :input_html
       else
         locals = { key => options[key] }
