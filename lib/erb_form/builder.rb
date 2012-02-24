@@ -18,10 +18,13 @@ module ErbForm
     end
 
     def field_layouts(attribute_name)
+      template_path = caller.select { |line| line.scan(template.view_paths.first.to_s).size > 0 }.first
+      template_path = template_path.split('/')[0...-1].join('/').gsub(template.view_paths.first.to_s, '')
+
       file = @field_layout.nil? ? attribute_name.to_s : @field_layout
       [
         [ErbForm.forms_path, @field_layout, attribute_name.to_s+'_field'],  # forms/custom_layout/attribute_name_field.html.erb
-        [template.controller_path, file+'_field'],                          # resourse_path/attribute_name_field.html.erb
+        [template_path, file+'_field'],                                     # template_path/attribute_name_field.html.erb
         [ErbForm.forms_path, @field_layout, 'field'],                       # forms/custom_layout/field.html.erb
         [ErbForm.forms_path, 'default', file+'_field'],                     # forms/attribute_name_field.html.erb
         [ErbForm.forms_path, 'default', 'field']                            # forms/attribute_name/field.html.erb
