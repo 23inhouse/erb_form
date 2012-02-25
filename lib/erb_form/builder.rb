@@ -81,7 +81,7 @@ module ErbForm
         :input_html
       when :label
         locals = { :label => options[:label] }
-        locals.merge!(options.select { |k,v| [:required].include?(k)})
+        locals.merge!(options.select { |k,v| [:as, :required].include?(k)})
         :modified
       else
         locals = { key => options[key] }

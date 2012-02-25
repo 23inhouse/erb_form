@@ -16,6 +16,12 @@ describe "blogs/render_input_as_different_type" do
     it "renders the input as that type" do
       render
       rendered.should have_selector "input", :type => 'checkbox'
+      rendered.should have_selector "input", :class => 'boolean required'
+    end
+
+    it "renders the label as that type" do
+      render
+      rendered.should have_selector "label", :class => 'boolean required'
     end
   end
 end
