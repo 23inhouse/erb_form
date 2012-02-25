@@ -4,7 +4,8 @@ describe "blogs/render_simple_form_with_options" do
   before(:each) do
     assign(:blog, stub_model(Blog,
       :name => "",
-      :errors => {:name => ['must not be blank']}
+      :post => "",
+      :errors => {:name => ['must not be blank'], :post => ['must not be blank']}
     ).as_new_record)
   end
 
@@ -36,6 +37,7 @@ describe "blogs/render_simple_form_with_options" do
     it "renders the error" do
       render
       rendered.should contain "My custom error must not be blank"
+      rendered.should contain "My custom label must not be blank"
     end
   end
 end

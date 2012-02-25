@@ -73,7 +73,7 @@ module ErbForm
     def simplify_options(key, options = {})
       newkey = case key
       when :error
-        locals = { :error_prefix => options[:error] }
+        locals = { :error_prefix => options[:error] || options[:label] }
         :error_prefix
       when :input
         locals = { :input_html => options[:input] }
