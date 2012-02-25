@@ -98,7 +98,7 @@ SimpleForm.setup do |config|
   # config.form_class = :simple_form
 
   # Whether attributes are required by default (or not). Default is true.
-  # config.required_by_default = true
+  config.required_by_default = false
 
   # Tell browsers whether to use default HTML5 validations (novalidate option).
   # Default is enabled.

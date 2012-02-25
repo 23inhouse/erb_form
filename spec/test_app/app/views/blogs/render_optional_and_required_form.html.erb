@@ -1,0 +1,6 @@
+<%= form_for(@blog) do |f| %>
+  <fieldset>
+    <%= f.field :post, { :layout => 'required_form' } %>
+    <%= f.field :published, { :layout => 'optional_form', :required => true } %>
+  </fieldset>
+<% end %>
