@@ -1,6 +1,7 @@
 require "erb_form/version"
 
 require 'simple_form'
+require 'erb_form/form_helper'
 require 'erb_form/builder'
 
 module ErbForm

@@ -111,5 +111,3 @@ module ErbForm
     end
   end
 end
-
-ActionView::Base.default_form_builder = ErbForm::Builder
